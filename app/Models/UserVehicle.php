@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vehicle extends Model
+class UserVehicle extends Model
 {
     use HasFactory;
     /**
@@ -14,19 +14,21 @@ class Vehicle extends Model
      * @var array
      */
     protected $fillable = [
+        'name',
+        'last_name',
+        'email',
         'brand',
         'model',
         'number_plate',
         'year',
-        'owner',
         'price',
     ];
 
     /**
-     * Get the UserVehicle that owns the vehicle.
+     * Get the comments for the blog post.
      */
-    public function UserVehicle()
+    public function vehicles()
     {
-        return $this->belongsTo(UserVehicle::class);
+        return $this->hasMany(Vehicle::class);
     }
 }
