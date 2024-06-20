@@ -18,6 +18,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'eloquent.created: App\Models\Vehicle' => [
+            'App\Listeners\VehicleEventListener@created',
+        ],
+        'eloquent.updated: App\Models\Vehicle' => [
+            'App\Listeners\VehicleEventListener@updated',
+        ],
     ];
 
     /**

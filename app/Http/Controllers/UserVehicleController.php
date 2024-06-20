@@ -59,7 +59,9 @@ class UserVehicleController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = UserVehicle::find($id);
+        
+        return new JsonResponse($user);
     }
 
     /**

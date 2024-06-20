@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Nette\Utils\Json;
 use App\Models\Vehicle;
+use App\Models\UserVehicle;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Nette\Utils\Json;
+use App\Models\HistoryUserVehicle;
 
 class VehicleController extends Controller
 {
@@ -59,7 +61,24 @@ class VehicleController extends Controller
      */
     public function show($id)
     {
-        //
+        $vehiculo = Vehicle::find($id);
+        $historial = HistoryUserVehicle::where("vehicle_id", $id)->get();
+        $owner = $vehiculo->userVehicle()
+                    ->get()
+                    ->toArray();
+
+        $result = [];
+        $result["user"] = $owner;
+       
+        foreach ($historial as $e) {
+            $owner = UserVehicle::find($e->owner_id);
+            $result["historial"][] = [
+                "owner" => $owner,
+                "created_at" => $e->created_at,
+            ];
+        }
+
+        return new JsonResponse($result);
     }
 
     /**

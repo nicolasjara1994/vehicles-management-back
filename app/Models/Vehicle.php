@@ -30,8 +30,8 @@ class Vehicle extends Model
     /**
      * Get the UserVehicle that owns the vehicle.
      */
-    public function UserVehicle()
+    public function userVehicle()
     {
-        return $this->belongsTo(UserVehicle::class);
+        return $this->belongsTo(UserVehicle::class, "owner");
     }
 }

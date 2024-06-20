@@ -50,10 +50,12 @@ Route::post('/login', function (Request $request) {
     ]);
 });
 
-// Route::get('/vehicles', 'VehicleController@index');
+
  
+Route::get('/vehicles/{id}/data/', [VehicleController::class, 'show']);
 Route::get('/vehicles', [VehicleController::class, 'index']);
 Route::post('/vehicles', [VehicleController::class, 'storeMultiple']);
 
+Route::get('/user-vehicles/{id}', [UserVehicleController::class, 'show']);
 Route::get('/user-vehicles', [UserVehicleController::class, 'index']);
 Route::post('/user-vehicles', [UserVehicleController::class, 'storeMultiple']);
