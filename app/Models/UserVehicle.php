@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class UserVehicle extends Model
 {
     use HasFactory;
+
+    public $table = "user_vehicle";
+
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -17,11 +22,6 @@ class UserVehicle extends Model
         'name',
         'last_name',
         'email',
-        'brand',
-        'model',
-        'number_plate',
-        'year',
-        'price',
     ];
 
     /**

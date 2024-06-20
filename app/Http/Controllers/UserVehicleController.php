@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vehicle;
+use App\Models\UserVehicle;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Nette\Utils\Json;
 
-class VehicleController extends Controller
+class UserVehicleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles = Vehicle::all();
+        $vehicles = UserVehicle::all();
         return new JsonResponse($vehicles);
     }
 
@@ -43,7 +43,7 @@ class VehicleController extends Controller
         $vehicles = json_decode($vehicles);
 
         foreach ($vehicles as $vehicle) {
-            Vehicle::create($vehicle);
+            UserVehicle::create($vehicle);
         }
 
         return new JsonResponse([
