@@ -51,8 +51,8 @@ Route::post('/login', function (Request $request) {
 });
 
 
- 
-Route::get('/vehicles/{id}/data/', [VehicleController::class, 'show']);
+Route::put('/vehicles/{id}/update', [VehicleController::class, 'update']);
+Route::get('/vehicles/{id}/data', [VehicleController::class, 'show']);
 Route::get('/vehicles', [VehicleController::class, 'index']);
 Route::post('/vehicles', [VehicleController::class, 'storeMultiple']);
 

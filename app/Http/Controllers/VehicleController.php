@@ -41,11 +41,23 @@ class VehicleController extends Controller
      */
     public function storeMultiple(Request $request)
     {
-        $vehicles = $request->input("vehicles");
-        $vehicles = json_decode($vehicles);
+        $data = $request->input("vehicles");
+        $data = json_decode($data);
 
-        foreach ($vehicles as $vehicle) {
-            Vehicle::create($vehicle);
+        foreach ($data as $e) {
+            $user = UserVehicle::create([
+                "name" => $e["nombre"],
+                "last_names" => $e["apellido"],
+                "email" => $e["correo"],
+            ]);
+            Vehicle::create([
+                "brand" => $e["marca"],
+                "model" => $e["modelo"],
+                "number_plate" => $e["patente"],
+                "year" => $e["año"], "Y",
+                "price" => $e["precio"],
+                "owner" => $user->id,
+            ]);
         }
 
         return new JsonResponse([
@@ -90,6 +102,15 @@ class VehicleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $owner_id = $request->request->getInt("owner_id", 0);
+        $vehiculo = Vehicle::find($id);
+        $vehiculo->owner = $owner_id;
+        $vehiculo->save();
+
+        return new JsonResponse([
+            "msje" => "Actualizo correctamente",
+            "vehiculo" => $vehiculo,
+        ]);
         //
     }
 

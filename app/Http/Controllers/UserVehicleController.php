@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserVehicle;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Nette\Utils\Json;
